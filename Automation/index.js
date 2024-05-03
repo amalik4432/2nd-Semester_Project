@@ -2,7 +2,7 @@ const btn = document.getElementById('voiceButton');
 class HomeAutomation {
   constructor() {
     this.introText =
-      'Welcome To Home Automation Project, Click on the button to set command';
+      'Welcome To Home Automation Project, I m LAZAREV Home Automation System, How can i help you.';
     this.websiteCommands = {
       'open youtube': 'https://youtube.com',
       'open google': 'https://google.com',
@@ -93,6 +93,16 @@ class HomeAutomation {
     this.isListening = false;
   };
 
+  handleRockPaperScissors = () => {
+    window.location.href = '../StonePaperScissors/index.html';
+  };
+  handleTicTacToe = () => {
+    window.location.href = '../TicTacToe/index.html';
+  };
+  handleCurrencyConverter = () => {
+    window.location.href = '../CurrencyConverter/index.html';
+  };
+
   processVoiceCommand = (command) => {
     command = command.toLowerCase();
     this.speak(`You said: ${command}`);
@@ -109,23 +119,24 @@ class HomeAutomation {
     if (command === 'turn lights off') {
       this.speak('Turning lights off...');
       // Add code here to turn off the lights
-      this.toggleBulbAnimation();
     } else if (command.startsWith('set room temperature to')) {
       const temperatureMatch = command.match(/set room temperature to (\d+)/);
       if (temperatureMatch) {
         const temperature = parseInt(temperatureMatch[1], 10); // Extract temperature value
         this.speak(`Setting room temperature to ${temperature}...`);
-        this.triggerTemperatureAnimation(temperature); // Trigger temperature animation
-      } else {
-        this.speak("Sorry, I couldn't understand the temperature value.");
       }
+    } else if (command === 'play rock paper scissors') {
+      this.handleRockPaperScissors();
+    } else if (command === 'play box game') {
+      this.handleTicTacToe();
+    } else if (command === 'currency converter') {
+      this.handleCurrencyConverter();
+    } else if (this.websiteCommands.hasOwnProperty(command)) {
+    } else if (this.websiteCommands.hasOwnProperty(command)) {
     } else if (this.websiteCommands.hasOwnProperty(command)) {
       setTimeout(() => {
         window.open(this.websiteCommands[command], '_blank');
       }, delay);
-    } else if (command === 'favorite') {
-      this.speak('Executing favorite command...');
-      this.triggerFavoriteAnimation();
     } else {
       this.speak("Sorry, I couldn't understand that command.");
     }
@@ -138,33 +149,6 @@ class HomeAutomation {
 
     // Update the 'responseArea' element with the spoken text
     responseArea.value += text + '\n';
-  };
-
-  toggleBulbAnimation = () => {
-    this.bulbImage.classList.add('turn-off-animation');
-    setTimeout(() => {
-      this.bulbImage.classList.remove('turn-off-animation');
-    }, 5000);
-  };
-
-  triggerTemperatureAnimation = () => {
-    const temperatureAnimation = document.getElementById(
-      'temperatureAnimation',
-    );
-    temperatureAnimation.innerText = 'Room Temperature Set!';
-    temperatureAnimation.style.opacity = '1';
-    setTimeout(() => {
-      temperatureAnimation.style.opacity = '0';
-    }, 2000); // Adjust the duration of the animation as needed
-  };
-
-  triggerFavoriteAnimation = () => {
-    const favoriteAnimation = document.getElementById('favoriteAnimation');
-    favoriteAnimation.innerText = 'Favorite Command Executed!';
-    favoriteAnimation.style.opacity = '1';
-    setTimeout(() => {
-      favoriteAnimation.style.opacity = '0';
-    }, 2000); // Adjust the duration of the animation as needed
   };
 
   initialize = () => {

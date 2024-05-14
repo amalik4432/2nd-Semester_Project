@@ -1,0 +1,47 @@
+body {
+  font-family: sans-serif;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.input-container label {
+  font-weight: bold;
+}
+
+.input-container input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.input-container button {
+  width: 8rem;
+  padding: 09px;
+  background-color: rgb(118, 118, 196);
+  color: #ccc;
+  border: none;
+}
+.input-container button:hover {
+  background-color: rgb(118, 118, 196);
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.expenses-list {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.total-container {
+  text-align: right;
+  margin-top: 20px;
+}
+
+#total {
+  font-weight: bold;
+}

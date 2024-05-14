@@ -63,8 +63,6 @@ class HomeAutomation {
       'open taobao': 'https://taobao.com',
       'open jd.com': 'https://jd.com',
     };
-    this.bulbImage = document.getElementById('bulbImage');
-
     this.recognition = new window.webkitSpeechRecognition();
     this.recognition.continuous = false;
     this.recognition.lang = 'en-US';
@@ -102,6 +100,9 @@ class HomeAutomation {
   handleCurrencyConverter = () => {
     window.location.href = '../CurrencyConverter/index.html';
   };
+  expenseTracer = () => {
+    window.location.href = '../expense/index.html';
+  };
 
   processVoiceCommand = (command) => {
     command = command.toLowerCase();
@@ -129,6 +130,9 @@ class HomeAutomation {
       this.handleRockPaperScissors();
     } else if (command === 'play box game') {
       this.handleTicTacToe();
+    } else if (command === 'currency converter') {
+    } else if (command === 'expense tracker') {
+      this.expenseTracer();
     } else if (command === 'currency converter') {
       this.handleCurrencyConverter();
     } else if (this.websiteCommands.hasOwnProperty(command)) {

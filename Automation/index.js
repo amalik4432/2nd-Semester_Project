@@ -92,16 +92,18 @@ class HomeAutomation {
   };
 
   handleRockPaperScissors = () => {
-    window.location.href = '../StonePaperScissors/index.html';
+    window.open('../StonePaperScissors/index.html', '_blank');
+
+    window.location.href = '';
   };
   handleTicTacToe = () => {
-    window.location.href = '../TicTacToe/index.html';
+    window.open('../TicTacToe/index.html', '_blank');
   };
   handleCurrencyConverter = () => {
-    window.location.href = '../CurrencyConverter/index.html';
+    window.open('../CurrencyConverter/index.html', '_blank');
   };
   expenseTracer = () => {
-    window.location.href = '../expense/index.html';
+    window.open('../expense/index.html', '_blank');
   };
 
   processVoiceCommand = (command) => {
@@ -131,6 +133,7 @@ class HomeAutomation {
     } else if (command === 'play box game') {
       this.handleTicTacToe();
     } else if (command === 'currency converter') {
+      this.handleCurrencyConverter();
     } else if (command === 'expense tracker') {
       this.expenseTracer();
     } else if (command === 'currency converter') {

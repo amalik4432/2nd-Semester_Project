@@ -1,8 +1,9 @@
 const btn = document.getElementById('voiceButton');
+
 class HomeAutomation {
   constructor() {
     this.introText =
-      'Welcome To Home Automation Project, I m LAZAREV Home Automation System, How can i help you.';
+      'Welcome To Home Automation Project, I am LAZAREV Home Automation System, How can I help you?';
     this.websiteCommands = {
       'open youtube': 'https://youtube.com',
       'open google': 'https://google.com',
@@ -93,15 +94,16 @@ class HomeAutomation {
 
   handleRockPaperScissors = () => {
     window.open('../StonePaperScissors/index.html', '_blank');
-
-    window.location.href = '';
   };
+
   handleTicTacToe = () => {
     window.open('../TicTacToe/index.html', '_blank');
   };
+
   handleCurrencyConverter = () => {
     window.open('../CurrencyConverter/index.html', '_blank');
   };
+
   expenseTracer = () => {
     window.open('../expense/index.html', '_blank');
   };
@@ -136,10 +138,6 @@ class HomeAutomation {
       this.handleCurrencyConverter();
     } else if (command === 'expense tracker') {
       this.expenseTracer();
-    } else if (command === 'currency converter') {
-      this.handleCurrencyConverter();
-    } else if (this.websiteCommands.hasOwnProperty(command)) {
-    } else if (this.websiteCommands.hasOwnProperty(command)) {
     } else if (this.websiteCommands.hasOwnProperty(command)) {
       setTimeout(() => {
         window.open(this.websiteCommands[command], '_blank');
@@ -155,7 +153,7 @@ class HomeAutomation {
     window.speechSynthesis.speak(utterance);
 
     // Update the 'responseArea' element with the spoken text
-    responseArea.value += text + '\n';
+    this.responseArea.value += text + '\n';
   };
 
   initialize = () => {

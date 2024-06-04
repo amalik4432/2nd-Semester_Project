@@ -2,8 +2,9 @@ const btn = document.getElementById('voiceButton');
 
 class HomeAutomation {
   constructor() {
-    this.introText =
-      'Welcome To Home Automation Project, I am LAZAREV Home Automation System, How can I help you?';
+    this.introText = `Welcome To Home Automation Project,
+       I am LAZAREV Home Automation System,
+        How can I help you?`;
     this.websiteCommands = {
       'open youtube': 'https://youtube.com',
       'open google': 'https://google.com',
@@ -69,7 +70,6 @@ class HomeAutomation {
     this.recognition.lang = 'en-US';
     this.recognition.interimResults = false;
     this.isListening = false;
-    this.responseArea = document.getElementById('responseArea');
   }
 
   toggleVoiceRecognition = () => {

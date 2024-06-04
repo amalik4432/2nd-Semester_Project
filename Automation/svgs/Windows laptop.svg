@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Artwork" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 265 184">
+  <defs>
+    <style>
+      .cls-1 {
+        stroke-linecap: round;
+      }
+
+      .cls-1, .cls-2 {
+        fill: none;
+        stroke: #1c334a;
+        stroke-linejoin: round;
+        stroke-width: 5px;
+      }
+    </style>
+  </defs>
+  <path class="cls-2" d="m198.5,129.06H66.5s.56,4.5.56,4.5c.25,2,1.95,3.5,3.97,3.5h122.94c2.02,0,3.72-1.5,3.97-3.5l.56-4.5Z"/>
+  <path class="cls-2" d="m79,46.94h107c2.21,0,4,1.79,4,4v78.13h-115V50.94c0-2.21,1.79-4,4-4Z"/>
+  <g>
+    <polygon class="cls-1" points="150.73 106.23 114.27 101.23 114.27 74.77 150.73 69.77 150.73 106.23"/>
+    <line class="cls-1" x1="129.8" y1="72.64" x2="129.8" y2="103.35"/>
+    <line class="cls-1" x1="114.27" y1="88" x2="150.73" y2="88"/>
+  </g>
+</svg>

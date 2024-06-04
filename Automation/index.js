@@ -151,9 +151,6 @@ class HomeAutomation {
     const utterance = new SpeechSynthesisUtterance();
     utterance.text = text;
     window.speechSynthesis.speak(utterance);
-
-    // Update the 'responseArea' element with the spoken text
-    this.responseArea.value += text + '\n';
   };
 
   initialize = () => {
@@ -176,4 +173,14 @@ homeAutomation.initialize();
 
 btn.addEventListener('click', () => {
   homeAutomation.toggleVoiceRecognition();
+});
+
+btn.addEventListener('click', () => {
+  if (homeAutomation.isListening) {
+    btn.style.backgroundColor = 'green';
+    btn.textContent = 'SPEAK NOW';
+  } else {
+    btn.style.backgroundColor = '';
+    btn.textContent = 'GO';
+  }
 });

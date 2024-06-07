@@ -3,8 +3,8 @@ const btn = document.getElementById('voiceButton');
 class HomeAutomation {
   constructor() {
     this.introText = `Welcome To Home Automation Project,
-       I am LAZAREV Home Automation System,
-        How can I help you?`;
+      I am LAZAREV Home Automation System,
+      How can I help you?`;
     this.websiteCommands = {
       'open youtube': 'https://youtube.com',
       'open google': 'https://google.com',
@@ -65,11 +65,22 @@ class HomeAutomation {
       'open taobao': 'https://taobao.com',
       'open jd.com': 'https://jd.com',
     };
-    this.recognition = new window.webkitSpeechRecognition();
+
+    this.recognition = this.getRecognitionInstance();
+    if (!this.recognition) {
+      console.error('Speech recognition is not supported in this browser.');
+      return;
+    }
     this.recognition.continuous = false;
     this.recognition.lang = 'en-US';
     this.recognition.interimResults = false;
     this.isListening = false;
+  }
+
+  getRecognitionInstance() {
+    const SpeechRecognition =
+      window.SpeechRecognition || window.webkitSpeechRecognition;
+    return SpeechRecognition ? new SpeechRecognition() : null;
   }
 
   toggleVoiceRecognition = () => {
@@ -78,6 +89,7 @@ class HomeAutomation {
     } else {
       this.startVoiceRecognition();
     }
+    this.updateButton();
   };
 
   startVoiceRecognition = () => {
@@ -104,7 +116,7 @@ class HomeAutomation {
     window.open('../CurrencyConverter/index.html', '_blank');
   };
 
-  expenseTracer = () => {
+  handleExpenseTracker = () => {
     window.open('../expense/index.html', '_blank');
   };
 
@@ -137,7 +149,7 @@ class HomeAutomation {
     } else if (command === 'currency converter') {
       this.handleCurrencyConverter();
     } else if (command === 'expense tracker') {
-      this.expenseTracer();
+      this.handleExpenseTracker();
     } else if (this.websiteCommands.hasOwnProperty(command)) {
       setTimeout(() => {
         window.open(this.websiteCommands[command], '_blank');
@@ -148,9 +160,18 @@ class HomeAutomation {
   };
 
   speak = (text) => {
-    const utterance = new SpeechSynthesisUtterance();
-    utterance.text = text;
+    const utterance = new SpeechSynthesisUtterance(text);
     window.speechSynthesis.speak(utterance);
+  };
+
+  updateButton = () => {
+    if (this.isListening) {
+      btn.style.backgroundColor = 'green';
+      btn.textContent = 'SPEAK NOW';
+    } else {
+      btn.style.backgroundColor = '';
+      btn.textContent = 'GO';
+    }
   };
 
   initialize = () => {
@@ -163,7 +184,25 @@ class HomeAutomation {
 
     this.recognition.onerror = (event) => {
       console.error(`Speech recognition error occurred: ${event.error}`);
-      this.speak('Sorry, there was an error in recognizing your command.');
+      if (event.error === 'no-speech') {
+        this.speak('No speech detected. Please try again.');
+      } else {
+        this.speak('Sorry, there was an error in recognizing your command.');
+      }
+      this.isListening = false;
+      this.updateButton();
+    };
+
+    this.recognition.onend = () => {
+      console.log('Speech recognition service disconnected.');
+      this.isListening = false;
+      this.updateButton();
+    };
+
+    this.recognition.onspeechend = () => {
+      console.log('Speech has stopped being detected.');
+      this.isListening = false;
+      this.updateButton();
     };
   };
 }
@@ -173,14 +212,4 @@ homeAutomation.initialize();
 
 btn.addEventListener('click', () => {
   homeAutomation.toggleVoiceRecognition();
-});
-
-btn.addEventListener('click', () => {
-  if (homeAutomation.isListening) {
-    btn.style.backgroundColor = 'green';
-    btn.textContent = 'SPEAK NOW';
-  } else {
-    btn.style.backgroundColor = '';
-    btn.textContent = 'GO';
-  }
 });
